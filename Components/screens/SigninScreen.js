@@ -16,7 +16,7 @@ export default function SigninScreen({ navigation }) {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSignIn = () => {
-    navigation.navigate("EcoMap");
+    navigation.navigate("Dashboard");
   };
 
   return (
