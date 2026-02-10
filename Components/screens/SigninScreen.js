@@ -15,6 +15,10 @@ export default function SigninScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const handleSignIn = () => {
+    navigation.navigate("EcoMap");
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <Image
@@ -70,7 +74,7 @@ export default function SigninScreen({ navigation }) {
             </Pressable>
           </View>
 
-          <Pressable style={styles.primaryBtn} onPress={() => alert("Sign In!")}>
+          <Pressable style={styles.primaryBtn} onPress={handleSignIn}>
             <Text style={styles.primaryBtnText}>SIGN IN</Text>
           </Pressable>
 
