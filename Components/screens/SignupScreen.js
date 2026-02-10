@@ -15,19 +15,19 @@ export default function SignupScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [pw2, setPw2] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agree, setAgree] = useState(false);
 
   return (
     <SafeAreaView style={styles.safe}>
+      <Image
+        source={require("../../assets/SignupBG.png")}
+        style={styles.backgroundImg}
+        resizeMode="cover"
+      />
       <View style={styles.container}>
-        {/* ✅ Top Illustration */}
-        <View style={styles.hero}>
-          <Image
-            source={require("../../assets/EcoDrop-Img3.png")}
-            style={styles.heroImg}
-            resizeMode="cover"
-          />
-        </View>
+        <View style={styles.spacer} />
 
         <View style={styles.card}>
           <View style={styles.nameRow}>
@@ -57,26 +57,51 @@ export default function SignupScreen({ navigation }) {
             keyboardType="email-address"
           />
 
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor="#6B7280"
-            style={styles.input}
-            value={pw}
-            onChangeText={setPw}
-            secureTextEntry
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor="#6B7280"
+              style={styles.passwordInput}
+              value={pw}
+              onChangeText={setPw}
+              secureTextEntry={!showPassword}
+            />
+            <Pressable
+              style={styles.eyeIcon}
+              onPress={() => setShowPassword(!showPassword)}
+            >
+              <Text style={styles.eyeEmoji}>
+                {showPassword ? "👁️" : "👁️‍🗨️"}
+              </Text>
+            </Pressable>
+          </View>
 
-          <TextInput
-            placeholder="Confirm Password"
-            placeholderTextColor="#6B7280"
-            style={styles.input}
-            value={pw2}
-            onChangeText={setPw2}
-            secureTextEntry
-          />
+          <View style={styles.passwordContainer}>
+            <TextInput
+              placeholder="Confirm Password"
+              placeholderTextColor="#6B7280"
+              style={styles.passwordInput}
+              value={pw2}
+              onChangeText={setPw2}
+              secureTextEntry={!showConfirmPassword}
+            />
+            <Pressable
+              style={styles.eyeIcon}
+              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              <Text style={styles.eyeEmoji}>
+                {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+              </Text>
+            </Pressable>
+          </View>
 
-          <Pressable style={styles.agreeRow} onPress={() => setAgree(!agree)}>
-            <Text style={styles.checkbox}>{agree ? "☑" : "☐"}</Text>
+          <Pressable 
+            style={styles.agreeRow} 
+            onPress={() => setAgree(!agree)}
+          >
+            <View style={styles.checkbox}>
+              {agree && <View style={styles.checkboxChecked} />}
+            </View>
             <Text style={styles.agreeText}>
               I agree to the Terms and Conditions
             </Text>
@@ -95,7 +120,7 @@ export default function SignupScreen({ navigation }) {
 
           <View style={styles.bottomRow}>
             <Text style={styles.small}>Already have an account? </Text>
-            <Pressable onPress={() => navigation.navigate("Signin")}>
+            <Pressable onPress={() => navigation.navigate("SignIn")}>
               <Text style={[styles.small, styles.link]}>Sign In.</Text>
             </Pressable>
           </View>
@@ -110,15 +135,16 @@ const BROWN = "#4A3B13";
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: BG },
-  container: { flex: 1, backgroundColor: BG },
-
-  hero: {
-    height: 240,
-    overflow: "hidden",
-  },
-  heroImg: {
+  container: { flex: 1 },
+  backgroundImg: {
+    position: "absolute",
     width: "100%",
     height: "100%",
+    top: 0,
+    left: 0,
+  },
+  spacer: {
+    height: 280,
   },
 
   card: {
@@ -138,15 +164,52 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginBottom: 12,
   },
+  passwordContainer: {
+    position: "relative",
+    marginBottom: 12,
+  },
+  passwordInput: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    paddingRight: 50,
+  },
+  eyeIcon: {
+    position: "absolute",
+    right: 14,
+    top: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  eyeEmoji: {
+    fontSize: 20,
+  },
 
   agreeRow: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 14,
-    gap: 8,
   },
-  checkbox: { fontSize: 16, opacity: 0.8 },
-  agreeText: { fontSize: 12, opacity: 0.75 },
+  checkbox: {
+    width: 18,
+    height: 18,
+    borderWidth: 2,
+    borderColor: BROWN,
+    borderRadius: 3,
+    marginRight: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  checkboxChecked: {
+    width: 10,
+    height: 10,
+    backgroundColor: BROWN,
+    borderRadius: 1,
+  },
+  agreeText: { fontSize: 14, opacity: 0.75 },
 
   primaryBtn: {
     backgroundColor: BROWN,
