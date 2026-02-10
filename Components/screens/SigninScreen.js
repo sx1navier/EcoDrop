@@ -16,7 +16,9 @@ export default function SigninScreen({ navigation }) {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSignIn = () => {
-    navigation.navigate("Dashboard");
+    navigation.navigate("Dashboard" , {userName: email.split("@")[0]
+      
+    });
   };
 
   return (

@@ -9,13 +9,14 @@ import {
   Image,
 } from "react-native";
 
-export default function DashboardScreen({ navigation }) {
+export default function DashboardScreen({ route, navigation }) {
+  const {userName} = route.params || {userName: "Eco-Warrior"};
   return (
     <SafeAreaView style={styles.container}>
       {/* Header Section */}
       <View style={styles.header}>
         <View>
-          <Text style={styles.greeting}>Hello, Gabby!</Text>
+          <Text style={styles.greeting}>Hello, {userName}!</Text>
           <Text style={styles.subGreeting}>Ready to recycle?</Text>
         </View>
         <Pressable
