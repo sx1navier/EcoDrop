@@ -15,10 +15,23 @@ export default function SigninScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  // -----------------------------
+  // Updated handleSignIn
+  // -----------------------------
   const handleSignIn = () => {
-    navigation.navigate("Dashboard" , {userName: email.split("@")[0]
-      
-    });
+    if (!email || !password) {
+      alert("Please enter email and password");
+      return;
+    }
+
+    // Temporary mock user object
+    const extractedName = email.split("@")[0];
+    const user = {
+      name: extractedName.charAt(0).toUpperCase() + extractedName.slice(1),
+      email: email,
+    };
+
+    navigation.navigate("Dashboard", { user });
   };
 
   return (
@@ -120,6 +133,9 @@ export default function SigninScreen({ navigation }) {
   );
 }
 
+// -----------------------------
+// Styles (unchanged)
+// -----------------------------
 const BG = "#8A9468";
 const BROWN = "#4A3B13";
 
@@ -133,10 +149,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
   },
-  spacer: {
-    height: 280,
-  },
-
+  spacer: { height: 280 },
   card: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.06)",
@@ -151,10 +164,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginBottom: 12,
   },
-  passwordContainer: {
-    position: "relative",
-    marginBottom: 12,
-  },
+  passwordContainer: { position: "relative", marginBottom: 12 },
   passwordInput: {
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -170,19 +180,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  eyeEmoji: {
-    fontSize: 20,
-  },
+  eyeEmoji: { fontSize: 20 },
   rowBetween: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 14,
   },
-  checkboxRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
+  checkboxRow: { flexDirection: "row", alignItems: "center" },
   checkbox: {
     width: 18,
     height: 18,
@@ -194,55 +199,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
-  checkboxChecked: {
-    width: 10,
-    height: 10,
-    backgroundColor: BROWN,
-    borderRadius: 1,
-  },
+  checkboxChecked: { width: 10, height: 10, backgroundColor: BROWN, borderRadius: 1 },
   rememberText: { fontSize: 14, color: "#1F2937", opacity: 0.8 },
   small: { fontSize: 12, color: "#1F2937", opacity: 0.8 },
   link: { color: BROWN, fontWeight: "700" },
-
-  primaryBtn: {
-    backgroundColor: BROWN,
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 2,
-  },
+  primaryBtn: { backgroundColor: BROWN, paddingVertical: 14, borderRadius: 10, alignItems: "center", marginTop: 2 },
   primaryBtnText: { color: "#fff", fontWeight: "800", letterSpacing: 1 },
-
-  orText: {
-    textAlign: "center",
-    marginVertical: 12,
-    fontSize: 11,
-    opacity: 0.6,
-  },
-
+  orText: { textAlign: "center", marginVertical: 12, fontSize: 11, opacity: 0.6 },
   socialRow: { flexDirection: "row", gap: 12 },
-  socialBtn: {
-    flex: 1,
-    paddingVertical: 12,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    gap: 8,
-  },
+  socialBtn: { flex: 1, paddingVertical: 12, borderRadius: 10, alignItems: "center", justifyContent: "center", backgroundColor: "#fff", flexDirection: "row", gap: 8 },
   google: { opacity: 0.95 },
   facebook: { opacity: 0.95 },
-  socialLogo: {
-    width: 20,
-    height: 20,
-  },
+  socialLogo: { width: 20, height: 20 },
   socialText: { fontWeight: "700", opacity: 0.75 },
-
-  bottomRow: {
-    marginTop: 14,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  bottomRow: { marginTop: 14, flexDirection: "row", justifyContent: "center", alignItems: "center" },
 });
