@@ -11,14 +11,12 @@ import {
 } from "react-native";
 
 export default function ProfileScreen({ navigation, route }) {
-  // Safe user object
   const user = route?.params?.user || { name: "Guest", email: "" };
 
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
 
-  // Logout function: navigate back to SignIn and reset stack
   const handleLogout = () => {
     navigation.reset({
       index: 0,
@@ -28,9 +26,7 @@ export default function ProfileScreen({ navigation, route }) {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Header */}
       <View style={styles.header}>
-        {/* Back Button */}
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
@@ -50,21 +46,18 @@ export default function ProfileScreen({ navigation, route }) {
         </View>
       </View>
 
-      {/* Stats */}
       <View style={styles.statsRow}>
         <StatCard label="Drops" value="128" />
         <StatCard label="CO₂ Saved" value="42kg" />
         <StatCard label="Streak" value="12 days" />
       </View>
 
-      {/* Achievements */}
       <Section title="Achievements">
         <Achievement text="♻️ First Drop" />
         <Achievement text="🌍 10kg CO₂ Saved" />
         <Achievement text="🔥 7-Day Streak" />
       </Section>
 
-      {/* Settings */}
       <Section title="Settings">
         <SettingItem label="Edit Profile" onPress={() => setModalVisible(true)} />
         <SettingItem label="Notifications" />
@@ -72,12 +65,10 @@ export default function ProfileScreen({ navigation, route }) {
         <SettingItem label="Help & Support" />
       </Section>
 
-      {/* Logout */}
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
 
-      {/* Edit Profile Modal */}
       <Modal visible={modalVisible} animationType="slide" transparent>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
@@ -115,7 +106,6 @@ export default function ProfileScreen({ navigation, route }) {
   );
 }
 
-/* ---------- Components ---------- */
 function StatCard({ label, value }) {
   return (
     <View style={styles.statCard}>
@@ -151,7 +141,6 @@ function SettingItem({ label, onPress }) {
   );
 }
 
-/* ---------- Styles ---------- */
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F3F4F6" },
   header: {

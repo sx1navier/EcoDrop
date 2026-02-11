@@ -8,14 +8,12 @@ export default function LandingScreen({ navigation }) {
   const dot3 = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Fade in animation
     Animated.timing(fadeTransition, {
       toValue: 1,
       duration: 1000,
       useNativeDriver: true,
     }).start();
 
-    // Three-dot loading animation
     const dotAnimation = Animated.loop(
       Animated.sequence([
         Animated.timing(dot1, {
@@ -55,7 +53,6 @@ export default function LandingScreen({ navigation }) {
 
     dotAnimation.start();
 
-    // Auto-redirect to SigninScreen
     const timer = setTimeout(() => {
       Animated.timing(fadeTransition, {
         toValue: 0,
@@ -74,7 +71,6 @@ export default function LandingScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Three-dot loading animation in center */}
       <Animated.View style={[styles.dotsContainer, { opacity: fadeTransition }]}>
         <Animated.View
           style={[
@@ -102,7 +98,6 @@ export default function LandingScreen({ navigation }) {
         />
       </Animated.View>
 
-      {/* Logo at the very bottom */}
       <Animated.View style={[styles.logoContainer, { opacity: fadeTransition }]}>
         <Image
           source={require("../../assets/Trubbish.png")}

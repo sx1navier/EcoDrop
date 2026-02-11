@@ -38,9 +38,7 @@ export default function EcoMapScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Top Navigation Bar */}
       <View style={styles.topBar}>
-        {/* Back Button */}
         <Pressable
           style={styles.navButton}
           onPress={() => navigation.goBack()}
@@ -48,13 +46,11 @@ export default function EcoMapScreen({ navigation }) {
           <Text style={styles.backIcon}>←</Text>
         </Pressable>
 
-        {/* Hamburger Menu Button */}
         <Pressable style={styles.navButton} onPress={toggleMenu}>
           <Text style={styles.hamburgerIcon}>☰</Text>
         </Pressable>
       </View>
 
-      {/* Dropdown Menu */}
       {menuVisible && (
         <Animated.View
           style={[
@@ -89,9 +85,7 @@ export default function EcoMapScreen({ navigation }) {
         </Animated.View>
       )}
 
-      {/* Main Content Area */}
       <View style={styles.content}>
-        {/* Your map or other content will go here */}
       </View>
     </SafeAreaView>
   );

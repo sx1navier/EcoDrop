@@ -13,7 +13,6 @@ export default function DashboardScreen({ route, navigation }) {
   const {userName} = route.params || {userName: "Eco-Warrior"};
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header Section */}
       <View style={styles.header}>
         <View>
           <Text style={styles.greeting}>Hello, {userName}!</Text>
@@ -28,7 +27,6 @@ export default function DashboardScreen({ route, navigation }) {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Balance Card - Links to Wallet */}
         <Pressable
           style={styles.balanceCard}
           onPress={() => navigation.navigate("Wallet")}
@@ -41,10 +39,8 @@ export default function DashboardScreen({ route, navigation }) {
           <Text style={styles.leafIcon}>🌿</Text>
         </Pressable>
 
-        {/* Quick Actions Grid */}
         <Text style={styles.sectionTitle}>Quick Actions</Text>
         <View style={styles.gridContainer}>
-          {/* Scan Action */}
           <Pressable
             style={[styles.actionCard, styles.scanCard]}
             onPress={() => navigation.navigate("QRScreen")}
@@ -53,7 +49,6 @@ export default function DashboardScreen({ route, navigation }) {
             <Text style={styles.actionText}>Scan to Deposit</Text>
           </Pressable>
 
-          {/* Map Action */}
           <Pressable
             style={styles.actionCard}
             onPress={() => navigation.navigate("EcoMap")}
@@ -63,7 +58,6 @@ export default function DashboardScreen({ route, navigation }) {
           </Pressable>
         </View>
 
-        {/* Recent Activity Section */}
         <Text style={styles.sectionTitle}>Recent Activity</Text>
         <View style={styles.activityList}>
           <View style={styles.activityItem}>
